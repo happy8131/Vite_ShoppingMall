@@ -29,3 +29,31 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const logoutUser = createAsyncThunk(
+  "user/logoutUser",
+  async (_, thunkAPI) => {
+    try {
+      const res = await axiosInstance.post(`/users/logout`);
+
+      return res.data;
+    } catch (err: any) {
+      console.log(err.message);
+      return thunkAPI.rejectWithValue(err.message || err.message);
+    }
+  }
+);
+
+export const authUser = createAsyncThunk(
+  "user/authUser",
+  async (_, thunkAPI) => {
+    try {
+      const res = await axiosInstance.get(`/users/auth`);
+
+      return res.data;
+    } catch (err: any) {
+      console.log(err.message);
+      return thunkAPI.rejectWithValue(err.message || err.message);
+    }
+  }
+);
