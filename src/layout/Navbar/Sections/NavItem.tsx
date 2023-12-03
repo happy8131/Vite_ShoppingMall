@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 const routes = [
   { to: "/login", name: "로그인", auth: false },
   { to: "/register", name: "회원가입", auth: false },
-  { to: "/product/upload", name: "업로드", auth: true },
+  { to: "/protected/upload", name: "업로드", auth: true },
   {
     to: "/user/cart",
     name: "카트",

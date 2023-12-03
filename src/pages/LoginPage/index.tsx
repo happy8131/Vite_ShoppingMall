@@ -22,7 +22,6 @@ const LoginPage = () => {
     const body = {
       email,
       password,
-
       image: "https://via.placeholder.com/600X400?text=no+user+image",
     };
 
