@@ -74,7 +74,7 @@ const LandingPage = () => {
   };
 
   const handlePrice = (value) => {
-    let array = [];
+    let array: number[] = [];
 
     for (const key in prices) {
       if (prices[key]._id === parseInt(value, 10)) {
@@ -84,7 +84,10 @@ const LandingPage = () => {
     return array;
   };
 
-  const showFilteredResults = (filters) => {
+  const showFilteredResults = (filters: {
+    continents: never[];
+    price: never[];
+  }) => {
     const body = {
       skip: 0,
       limit,

@@ -55,7 +55,7 @@ function App() {
         <Route element={<ProtectedRoutes isAuth={isAuth} />}>
           <Route path="/protected" element={<ProtectedPage />} />
           <Route path="/protected/upload" element={<UploadProductPage />} />
-          <Route path="/protected/:productId" element={<DetailProductPage />} />
+          <Route path="/product/:productId" element={<DetailProductPage />} />
           <Route path="/user/cart" element={<CartPage />} />
           <Route path="/history" element={<HistoryPage />} />
         </Route>
