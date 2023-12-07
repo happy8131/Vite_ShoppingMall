@@ -81,12 +81,58 @@ export const getCartItems = createAsyncThunk(
       );
 
       userCart.forEach((cartItem: { id: number; quantity: number }) => {
-        res.data.forEach((productDetail: { id: number }, index: number) => {
-          if (cartItem.id === productDetail._id) {
-            res.data[index].quantity = cartItem.quantity;
+        res.data.forEach(
+          (
+            productDetail: {
+              _id: number;
+            },
+            index: number
+          ) => {
+            if (cartItem.id === productDetail._id) {
+              res.data[index].quantity = cartItem.quantity;
+            }
           }
-        });
+        );
       });
+      return res.data;
+    } catch (err: any) {
+      console.log(err.message);
+      return thunkAPI.rejectWithValue(err.message || err.message);
+    }
+  }
+);
+
+export const removeCartItem = createAsyncThunk(
+  "user/removeCartItem",
+  async (productId: number, thunkAPI) => {
+    try {
+      const res = await axiosInstance.delete(
+        `/users/cart?productId=${productId}`
+      );
+
+      res.data.cart.forEach((cartItem: { id: number; quantity: number }) => {
+        res.data.productInfo.forEach(
+          (productItem: { _id: number }, idx: number) => {
+            if (cartItem.id === productItem._id) {
+              res.data.productInfo[idx].quantity = cartItem.quantity;
+            }
+          }
+        );
+      });
+      return res.data;
+    } catch (err: any) {
+      console.log(err.message);
+      return thunkAPI.rejectWithValue(err.message || err.message);
+    }
+  }
+);
+
+export const payProducts = createAsyncThunk(
+  "user/payProducts",
+  async (body, thunkAPI) => {
+    try {
+      const res = await axiosInstance.post(`/users/payment`, body);
+
       return res.data;
     } catch (err: any) {
       console.log(err.message);
