@@ -36,7 +36,6 @@ const LandingPage = () => {
     };
 
     try {
-      console.log("입장");
       const res = await axiosInstance.get("/products", { params });
 
       if (loadMore) {
